@@ -92,10 +92,12 @@
 <meta property="og:site_name" content="王以杰的博客">
 <meta property="og:description" content="Android系统存储主要分为内部存储和外部存储">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-04T07:49:11.594Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fo4h182o15j31b80o07bc.jpg">
+<meta property="og:updated_time" content="2018-02-04T08:00:27.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 数据存储">
 <meta name="twitter:description" content="Android系统存储主要分为内部存储和外部存储">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1fo4h182o15j31b80o07bc.jpg">
 
 
 
@@ -389,7 +391,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li><h4 id="公有目录"><a href="#公有目录" class="headerlink" title="公有目录"></a>公有目录</h4><p>公有目录的数据不会随着应用的删除而清除，所以可以存放那些不用删除的数据；公有目录有十大类目录，获取目录方式：<code>Environment.getExternalStoragePublicDirectory(String type)</code>获取，函数参数:</p>
-<p>|                    参数                    |                目录                 |<br>| :————————————–: | :——————————-: |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_ALARMS) |    /storage/emulated/0/Alarms     |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) |     /storage/emulated/0/DCIM      |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) |    /storage/emulated/0/Movies     |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC) |     /storage/emulated/0/Music     |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES) |   /storage/emulated/0/Ringtones   |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS) |   /storage/emulated/0/Podcasts    |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) |   /storage/emulated/0/Documents   |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_NOTIFICATIONS) | /storage/emulated/0/Notifications |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) |   /storage/emulated/0/Download    |<br>| getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) |   /storage/emulated/0/Pictures    |</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fo4h182o15j31b80o07bc.jpg" alt=""></p>
 <p><strong>注意：参数不能为空，否则会报错</strong>，可以根据对应目录的名称存放相应的数据</p>
 </li>
 <li><h4 id="私有目录"><a href="#私有目录" class="headerlink" title="私有目录"></a>私有目录</h4><p>通过Google建议我们将应用的数据存放在外部存储中的私有目录，因为内部存储空间主要是系统生成的文件进行存储，例如数据库文件，WebView缓存以及SharedPreferences文件等，并且内部存储空间有限，并且外部存储空间的私有目录也会随着应用的删除而清除；</p>
