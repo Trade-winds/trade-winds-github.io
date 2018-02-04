@@ -93,7 +93,7 @@
 <meta property="og:description" content="前言​    Android日常开发中经常需要在onCreate()方法中去获取View的宽和高，我们知道在onCreate中，是无法直接使用getWidth()、getHeight()、getMeasuredWidth()、getMeasuredHeight()来直接获取宽高的，这些方法通常的返回值都是0。常用的能正确获取宽高的方法有使用ViewTreeObserver. OnGlobalLay">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fo0st8qgthj30os0790vd.jpg">
-<meta property="og:updated_time" content="2018-02-01T03:51:46.053Z">
+<meta property="og:updated_time" content="2018-02-01T07:10:45.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android View.post() 原理解析">
 <meta name="twitter:description" content="前言​    Android日常开发中经常需要在onCreate()方法中去获取View的宽和高，我们知道在onCreate中，是无法直接使用getWidth()、getHeight()、getMeasuredWidth()、getMeasuredHeight()来直接获取宽高的，这些方法通常的返回值都是0。常用的能正确获取宽高的方法有使用ViewTreeObserver. OnGlobalLay">
@@ -382,6 +382,7 @@
 <p>执行结果：</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fo0st8qgthj30os0790vd.jpg" alt=""></p>
 <p>我们发现在执行过获取View宽高的代码之后，貌似系统还又重新执行了View的测量布局绘画工作，我们大概都了解有时候View的绘制工作并不是依次能够成功的，所以有时会重新发消息到主线程再执行绘制工作，有可能导致View的宽或高以及位置可能发生变化，这个消息就会排在View.post()发送的消息的后边，那么就会出现上图的情况，所以View.post()获取的宽高不一定百分百准确</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>​    总结一下，就是在onCreate中使用View.post()获取View的宽或高时，View会先将Runnable代码放入一个队列之中，待到ViewRootImpl执行View的绘制流程时即performTraversals()方法时将获取宽高的代码放入主线程的消息队列之中，又因为performTraversals()方法本身就是通过主线程的消息队列执行的，所以当执行完performTraversals()方法也就是View的绘制流程以后，才能执行我们获取View宽高的代码，这就是View.post()能获取View宽高的原因</p>
 
       
     </div>
@@ -425,6 +426,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/01/android-storage/" rel="prev" title="Android 数据存储">
+                Android 数据存储 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -494,7 +499,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -512,7 +517,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -576,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">3.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View-post"><span class="nav-number">3.1.</span> <span class="nav-text">View.post()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ViewRootImpl-performTraversals"><span class="nav-number">3.2.</span> <span class="nav-text">ViewRootImpl.performTraversals()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-post-获取的宽高是否准确？"><span class="nav-number">4.</span> <span class="nav-text">View.post()获取的宽高是否准确？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">3.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View-post"><span class="nav-number">3.1.</span> <span class="nav-text">View.post()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ViewRootImpl-performTraversals"><span class="nav-number">3.2.</span> <span class="nav-text">ViewRootImpl.performTraversals()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-post-获取的宽高是否准确？"><span class="nav-number">4.</span> <span class="nav-text">View.post()获取的宽高是否准确？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
